@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <table id="list">
+            <thead>
+                <tr>
+                    <td>번호</td>
+                    <td>이름</td>
+                    <td>전화번호</td>
+                </tr>
+            </thead>
+            <tbody id="contacts">
+                <template  v-for="(contact,index) in contacts" v-bind:key="contact.no">
+                    <tr>
+                        <td>{{contact.no}}</td>
+                        <td>{{contact.name}}</td>
+                        <td>{{contact.tel}}</td>
+                    </tr>
+                    <tr class="divider" v-if="index%4===3">
+                        <td colspan="3"></td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script type="text/javascript" src="https://unpkg.com/vue"></script>
+<script type="text/javascript">
+let vm=Vue.createApp({
+    name:"App",
+    data(){
+        return{
+            "contacts":[
+                {no:1011, name:"RM", tel:"010-3456-7891"},
+                {no:1012, name:"정국", tel:"010-3456-7891"},
+                {no:1013, name:"제이홉", tel:"010-3456-7891"},
+                {no:1014, name:"슈가", tel:"010-3456-7891"},
+                {no:1015, name:"진", tel:"010-3456-7891"},
+                {no:1016, name:"뷔", tel:"010-3456-7891"},
+                {no:1017, name:"지민", tel:"010-3456-7891"},
+            ]
+        }
+    }
+}).mount('#app');
+</script>
+</html>
+
+<style>
+    #list {
+        width:600px;
+        border:1px solid black;
+        border-collapse:collapse;
+    }
+    #list td, #list th {
+        border:1px solid black;
+        text-align: center;
+    }
+    #list > thead > tr {
+        color:yellow;
+        background-color: purple;
+    }
+    .divider {
+        height:2px;
+        background-color:gray;
+    }
+</style>
