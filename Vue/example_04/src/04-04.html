@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.number="amt"><br/>
+        금액 : <span>{{amount}}원</span>
+    </div>
+</body>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    let vm = Vue.createApp({
+        name:"App",
+        data(){
+            return{
+                amt:99999
+            }
+        },
+        computed:{
+            amount:{
+                get(){
+                    let regexp = /\B(?=(\d{3})+(?!\d))/g;
+                    return this.amt.toString().replace(regexp, ',');
+                },
+                set(amount) {
+                    let amt = parseInt(amount.replace(/,/g,""));
+                    this.amt = Number.isNan(amt)?0:amt;
+                }
+            }
+        }
+    }).mount('#app')
+</script>
+</html>
